@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { ShoppingCart } from "lucide-react";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/shared/store";
 
 export function Header() {
+  const items = useSelector((state: RootState) => state.cart.items.length);
+  
   return (
     <header className="border-b bg-white">
       <div className="container mx-auto flex items-center justify-between p-4">
@@ -15,7 +19,7 @@ export function Header() {
           <ShoppingCart size={24} />
           {/* Заглушка для счётчика, потом подключим Redux */}
           <span className="absolute -top-2 -right-2 rounded-full bg-red-500 text-white text-xs px-1">
-            0
+            {items || 0}
           </span>
         </Link>
       </div>
